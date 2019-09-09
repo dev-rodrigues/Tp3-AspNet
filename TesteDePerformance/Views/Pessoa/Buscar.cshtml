@@ -1,0 +1,64 @@
+﻿@model IEnumerable<TesteDePerformance.Models.Pessoa>
+
+@{
+    ViewBag.Title = "Buscar";
+}
+
+<h2>Buscar</h2>
+<span>Digite o nome ou parte do nome da Pessoa:</span>
+
+<br />
+
+@using (Html.BeginForm()) {
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+
+        <br />
+
+        <div class="form-group">
+            <div class="col-md-10">
+                <input type="text" name="pesquisa" />
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-10">
+                <input type="submit" value="Buscar" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(Model => Model.Nome)
+        </th>
+
+        <th>
+            @Html.DisplayNameFor(Model => Model.SobreNome)
+        </th>
+    </tr>
+
+    @foreach (var p in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => p.Nome);
+            </td>
+
+            <td>
+                @Html.DisplayFor(modelItem => p.SobreNome);
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = p.Id }) |
+                @Html.ActionLink("Details", "Details", new { id = p.Id }) |
+                @Html.ActionLink("Delete", "Delete", new { id = p.Id })
+            </td>
+        </tr>
+    }
+</table>
+
+<p>
+    @Html.ActionLink("Back to List", "Index")
+</p>

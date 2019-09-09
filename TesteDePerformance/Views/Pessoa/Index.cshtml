@@ -1,0 +1,45 @@
+﻿@model IEnumerable<TesteDePerformance.Models.Pessoa>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Lista de Pessoas</h2>
+
+<p>
+    @Html.ActionLink("Adicionar pessoa", "Create")
+</p>
+<p>
+    @Html.ActionLink("Pesquisar pessoas", "Buscar")
+</p>
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(Model => Model.Nome)
+        </th>
+        <th>
+            @Html.DisplayNameFor(Model => Model.SobreNome)
+        </th>
+    </tr>
+
+    @foreach (var pessoa in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => pessoa.Nome);
+        </td>
+
+        <td>
+            @Html.DisplayFor(modelItem => pessoa.SobreNome);
+        </td>
+
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id = pessoa.Id }) |
+            @Html.ActionLink("Details", "Details", new { id = pessoa.Id }) |
+            @Html.ActionLink("Delete", "Delete", new { id = pessoa.Id })
+        </td>
+    </tr>
+    }
+
+</table>
